@@ -2,6 +2,7 @@ import React from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 import PropTypes from 'prop-types';
+import Select from 'react-select';
 
 const CourseForm= ({course, allAuthors, onSave, onChange, loading, errors}) => {
   return (
@@ -20,8 +21,9 @@ const CourseForm= ({course, allAuthors, onSave, onChange, loading, errors}) => {
         value={course.authorId}
         defaultOption="Select Author"
         options={allAuthors}
-        onChange={onChange}
-        error={errors.authorId} />
+        onChange={onChange} 
+        error={errors.authorId}
+        />
 
         <TextInput
         name="category"
