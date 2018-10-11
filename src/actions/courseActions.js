@@ -1,10 +1,15 @@
 import * as types from './actionTypes';
+import courseApi from '../api/mockCourseApi';
 
-const createCourse = (course) => {
+export const loadCoursesSuccess = (courses) => {
   return {
-    type: types.CREATE_COURSE,
-    course
+    type: types.LOAD_COURSES_SUCCESS,
+    courses
   }
 }
 
-export default createCourse;
+export const loadCourses = () =>  {
+  return dispatch => courseApi.getAllCourses()
+    .then(courses => dispatch(loadCoursesSuccess(courses)))
+    .catch((error) => { throw error; });
+}
