@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import Header from './common/Header'
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -26,4 +27,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
