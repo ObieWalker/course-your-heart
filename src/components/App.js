@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Proptypes from 'prop-types'
 import Header from './common/Header'
+import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -16,4 +18,11 @@ class App extends Component {
 App.proptypes= {
   children: Proptypes.object.isRequired
 }
-export default App;
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    loading: state.ajaxCallsInProgress > 1
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(App));
