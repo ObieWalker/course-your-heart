@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import Proptypes from 'prop-types'
 import Header from './common/Header'
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -8,8 +8,7 @@ class App extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <Header
-         loading={this.props.loading} />
+        <Header />
         {this.props.children}
       </div>
     );
@@ -17,8 +16,7 @@ class App extends Component {
 }
 
 App.proptypes= {
-  children: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired
+  children: Proptypes.object.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => {

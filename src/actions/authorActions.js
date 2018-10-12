@@ -1,7 +1,5 @@
 import * as types from './actionTypes';
 import authorApi from '../api/mockAuthorApi';
-import {beginAjaxCall} from './ajaxStatusActions'
-
 
 export const loadAuthorsSuccess = (authors) => {
   return {
@@ -11,9 +9,7 @@ export const loadAuthorsSuccess = (authors) => {
 }
 
 export const loadAuthors = () =>  {
-  return dispatch =>
-    dispatch(beginAjaxCall()) 
-    authorApi.getAllAuthors()
+  return dispatch => authorApi.getAllAuthors()
     .then(authors => dispatch(loadAuthorsSuccess(authors)))
     .catch((error) => { throw error; });
 }
