@@ -18,7 +18,7 @@ class ManageCoursePage extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (this,props.course.id != nextProps.course.id) {
+    if (this.props.course.id != nextProps.course.id) {
       this.setState({course: Object.assign({}, nextProps.course)})
     }
   }
