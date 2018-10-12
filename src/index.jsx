@@ -6,7 +6,7 @@ import { loadCourses } from './actions/courseActions';
 import { loadAuthors } from './actions/authorActions';
 import Routes from './routes'
 import { configureStore } from './store/configureStore';
-// import '../node_modules/toastr/build/toastr.css'
+import '../node_modules/toastr/build/toastr.css';
 
 const store = configureStore();
 store.dispatch(loadCourses())

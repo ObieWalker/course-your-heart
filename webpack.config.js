@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { resolve } = require('path');
 
 module.exports = {
@@ -21,6 +22,13 @@ module.exports = {
         use: {
         loader: "html-loader"
         }
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader'],
+        })
       }
     ]
   },
@@ -32,6 +40,7 @@ module.exports = {
       template: "./src/index.html",
       inject: 'body',
     }),
+    new ExtractTextPlugin('css/bundle.css'),
     // new webpack.DefinePlugin({
     //   'process.env': {
     //     NODE_ENV: JSON.stringify('development'),
