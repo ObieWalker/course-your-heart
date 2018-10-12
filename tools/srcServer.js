@@ -1,12 +1,12 @@
 import express from 'express';
 import webpack from 'webpack';
 import path from 'path';
-import config from '../webpack.config.dev';
+import config from '../webpack.config';
 import open from 'open';
 
 /* eslint-disable no-console */
 
-const port = 3000;
+const port = process.env.PORT || 5000;
 const app = express();
 const compiler = webpack(config);
 
@@ -25,6 +25,8 @@ app.listen(port, function(err) {
   if (err) {
     console.log(err);
   } else {
-    open(`http://localhost:${port}`);
+    if (process.env.NODE_ENV === 'development') {
+      open(`http://localhost:${port}`);
+    }
   }
 });
