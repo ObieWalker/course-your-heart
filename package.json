@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack",
-    "test": "mocha --reporter spec tools/testSetup.js \"src/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch"
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
