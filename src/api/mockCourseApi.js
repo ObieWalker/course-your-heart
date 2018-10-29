@@ -1,9 +1,10 @@
 import delay from './delay';
+import _ from 'lodash'
 
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
 // All calls return promises.
-const courses = [
+export const courses = [
   {
     id: "react-flux-building-applications",
     title: "Building Applications in React and Flux",
@@ -56,10 +57,51 @@ const generateId = (course) => {
 };
 
 class CourseApi {
-  static getAllCourses() {
+  static getAllCourses(from = 0, to = 2) {
+    let sortedCourses = _.orderBy(courses, ['title'], ['asc']);
+    if (from < courses.length && to > courses.length) {
+      return new Promise((resolve, reject) => {
+        sortedCourses = sortedCourses.slice(from, to-1)
+        let coursesData = {totalReached: true, sortedCourses}
+        setTimeout(() => {
+          resolve(Object.assign([], coursesData));
+        }, delay);
+      });
+    }
+    else if (to == courses.length) {
+      return new Promise((resolve, reject) => {
+        sortedCourses = sortedCourses.slice(from, to)
+        let coursesData = {totalReached: true, sortedCourses}
+        setTimeout(() => {
+          resolve(Object.assign([], coursesData));
+        }, delay);
+      });
+    }
+    else if (from < courses.length && to < courses.length){
+      return new Promise((resolve, reject) => {
+        sortedCourses = sortedCourses.slice(from, to)
+        let coursesData = {totalReached: false, sortedCourses}
+        setTimeout(() => {
+          resolve(Object.assign([], coursesData));
+        }, delay);
+      });
+    }
+    else {
+      return new Promise((resolve, reject) => {
+        let sortedCourses = []
+        let coursesData = {totalReached: true, sortedCourses}
+        setTimeout(() => {
+          resolve(Object.assign([], coursesData));
+        }, delay);
+      });
+    }
+  }
+
+  static totalCourses () {
     return new Promise((resolve, reject) => {
+      let totalCourses = courses.length
       setTimeout(() => {
-        resolve(Object.assign([], courses));
+        resolve(totalCourses);
       }, delay);
     });
   }

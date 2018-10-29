@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: resolve(__dirname, 'dist'),
     filename: 'js/bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -38,6 +39,7 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",
+      filename: "index.html",
       inject: 'body',
     }),
     new ExtractTextPlugin('css/bundle.css'),
