@@ -21,16 +21,25 @@ export default function courseReducer(state = initialState, action) {
       return state;
 
     case types.UPDATE_COURSES_SUCCESS:
-      return [
-        ...state.courses.filter(course => course.id !== action.course.id),
-        Object.assign({}, action.course)
-      ]
+      const afterUpdateState = Object.assign({}, state);
+      const indexOfCourseToUpdate = state.courses.findIndex(course => {
+        return course.id == action.course.id
+      })
+      afterUpdateState.courses.splice(indexOfCourseToUpdate, 1);
+      afterUpdateState.courses.push(action.course)
+      afterUpdateState.courses = _.orderBy(afterUpdateState.courses, ['title'], ['asc']);
+      return afterUpdateState
 
     case types.DELETE_COURSES_SUCCESS:
-      return [
-        ...state.courses.filter(course => course.id !== action.courseId)
-      ];
-
+      {
+        const afterDelState = Object.assign({}, state);
+        const indexOfCourseToDelete = state.courses.findIndex(course => {
+          return course.id == action.courseId
+        })
+        afterDelState.courses.splice(indexOfCourseToDelete, 1);
+        return afterDelState;
+      }
+      
     default:
       return state;
   }
