@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router-dom'
-import { loadCourses } from './actions/courseActions';
+import { totalCourses, loadCourses } from './actions/courseActions';
 import { loadAuthors } from './actions/authorActions';
 import Routes from './routes'
 import { configureStore } from './store/configureStore';
@@ -10,6 +10,7 @@ import '../node_modules/toastr/build/toastr.css';
 
 const store = configureStore();
 store.dispatch(loadCourses())
+store.dispatch(totalCourses())
 store.dispatch(loadAuthors())
 
 ReactDom.render(
