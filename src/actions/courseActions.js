@@ -69,12 +69,12 @@ export const saveCourse = (course) => {
   }
 }
 
-export const deleteCourse = (course) => {
+export const deleteCourse = (courseId) => {
   return function (dispatch, getState) {
     dispatch(beginAjaxCall()) 
-    return courseApi.deleteCourse(course.id)
+    return courseApi.deleteCourse(courseId)
     .then(deletedCourse => {
-      dispatch(deleteCourseSuccess(course.id))
+      dispatch(deleteCourseSuccess(courseId))
     }).catch((error) => {
       dispatch(ajaxCallError(error))
       throw (error);
