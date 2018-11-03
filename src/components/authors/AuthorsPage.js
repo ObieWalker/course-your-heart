@@ -58,7 +58,7 @@ updateDetails(e) {
         <button className="btn btn-primary btn-lg pull-right"
           onClick={() => this.setState({ show: true })} >Add Author</button>
         {authors ? (
-          <div className="container row">
+          <div className="container row" style={{ width: '90%' }}>
             {authors.map((author, i) => (
               <span className="col-md-2">
                 <span className="card"
